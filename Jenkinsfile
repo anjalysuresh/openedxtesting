@@ -2,16 +2,7 @@ node {
   // Mark the code checkout 'stage'....
     
    
-    dir('Content_Tools') {
-        git url: 'https://github.com/anjalysuresh/Community-Content-Tools.git'
-    }
-    dir('Eventlogs') {
-        git url: 'https://github.com/anjalysuresh/Collaboration-System-Event-Logs.git'
-    }
-  dir('Recommendation') {
-        git url: 'https://github.com/anjalysuresh/Community-Recommendation.git'
-    }
-  
+   
   
   
   
@@ -21,18 +12,7 @@ node {
     
     
   checkout scm
-  checkout scm
-  checkout scm  
-  
-   checkout ([
-            $class: 'GitSCM',
-            branches: [[name: '*/notifications']],
-            doGenerateSubmoduleConfigurations: false,
-            extensions: [[$class: 'RelativeTargetDirectory',
-            relativeTargetDir: 'Notification_Selenium']],
-            submoduleCfg: [],
-  userRemoteConfigs: [[url: 'https://github.com/anjalysuresh/Collaboration-System-Selenium.git']]])
-     
+ 
      
      
      
@@ -47,22 +27,14 @@ node {
             
                 echo 'Building..'
                 
-                sh "./collab.sh"
+                sh "./openedx.sh"
               
-                sh "./Content_Tools/h5p_etherpad.sh"
-
-                sh "./Eventlogs/eventlog.sh"
-
-                sh "./Recommendation/recommendation.sh" 
-    
-                sh "./community.sh"
             
         } 
     
    stage('test')
      {
-      sh "./test.sh"  
-      sh "./selen.sh"
+     echo "testing"
      }
    
     
